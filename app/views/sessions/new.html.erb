@@ -11,6 +11,7 @@
   <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
   <%= form.checkbox "Remember me" %>
   <%= form.label "Remember me", style: "display: inline-block;" %>
+  <%= link_to "Sign up", new_registration_path, style: "display: inline-block;" %>
   <%= link_to "Forgot password?", new_password_path, style: "display: inline-block;" %>
   <%= form.submit "Sign in", style: "display: block;" %>
 <% end %>
