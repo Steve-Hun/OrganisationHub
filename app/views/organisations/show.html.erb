@@ -1,0 +1,10 @@
+<h1>Organisation</h1>
+
+<%= @organisation? %>
+    <p>Name: <%= @organisation.name %></p>
+    <p>Description: <%= @organisation.description %></p>
+    <p>Created at: <%= @organisation.created_at %></p>
+    <p>Updated at: <%= @organisation.updated_at %></p>
+<% else %>
+    <p>You are not part of any organisation.</p>
+<% end %>
