@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resource :session do
     get :signin, to: "sessions#new"
   end
+  resources :organisations, only: %i[ show edit index ]
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
