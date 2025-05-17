@@ -5,4 +5,5 @@ class User < ApplicationRecord
   belongs_to :organisation, optional: true
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+  validates :name, presence: true
 end
