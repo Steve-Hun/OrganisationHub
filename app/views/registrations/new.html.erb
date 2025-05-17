@@ -3,7 +3,7 @@
 <%= form_with url: registration_path do |form| %>
     <div style="display: block;">
         <%= form.label "Organisation Id" %>
-        <%= form.text_field :organisation_id, required: true, autofocus: true, autocomplete: "organisation_id", placeholder: "Enter your organisation id", value: params[:organisation_id] %>
+        <%= form.text_field :organisation_id, autofocus: true, autocomplete: "organisation_id", placeholder: "Enter your organisation id", value: params[:organisation_id] %>
     </div>
     <div style="display: block;">   
         <%= form.label "Email address" %>
