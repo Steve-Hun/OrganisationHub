@@ -19,7 +19,7 @@ class RegistrationsController < ApplicationController
     
     private
         def user_params
-            params.permit(:organisation_id, :email_address, :password, :password_confirmation)
+            params.permit(:organisation_id, :name, :email_address, :password, :password_confirmation)
         end
 end
 

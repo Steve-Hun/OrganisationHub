@@ -1,0 +1,19 @@
+<h1>User profile<h1>
+
+<div style="display: block">
+    <h3>Name</h3>
+    <% if @user.name.present? %>
+        <p><%= @user.name %></p>
+    <% else %>
+        <p>No name provided</p>
+    <% end %>
+</div>
+
+
+<div style: "display: block">
+    <h3>Email Address</h3>
+    <p><%= @user.email_address %></p>
+</div>
+
+
+<%= link_to "Edit profile", edit_user_path %>
