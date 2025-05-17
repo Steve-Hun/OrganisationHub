@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get "/", to: "registrations#new"
   end
 
+  resources :users, only: %i[ edit update show ]
+
   resources :organisations, only: %i[ show edit index ]
   
   resources :passwords, param: :token
