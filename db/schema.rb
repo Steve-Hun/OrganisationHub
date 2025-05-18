@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_17_085949) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_18_012850) do
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "organisation_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organisation_id"], name: "index_memberships_on_organisation_id"
+    t.index ["user_id", "organisation_id"], name: "index_memberships_on_user_id_and_organisation_id", unique: true
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "organisations", force: :cascade do |t|
     t.string "name"
     t.string "country"
@@ -24,6 +35,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_085949) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "organisation_id", null: false
+    t.index ["organisation_id"], name: "index_posts_on_organisation_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -41,11 +54,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_17_085949) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "organisation_id"
     t.string "name"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "memberships", "organisations"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "posts", "organisations"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
 end
