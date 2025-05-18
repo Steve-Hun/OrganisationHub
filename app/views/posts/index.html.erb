@@ -6,7 +6,7 @@
     <div>
       <p><strong>Description:</strong> <%= post.description %></p>
       <p><strong>Author:</strong> <%= post.user.email_address %></p>
-      <p><strong>Last Updated:</strong> <%= post.updated_at %></p>
+      <p><strong>Last Updated:</strong> <%= post.updated_at.strftime("%A %d %b %Y, %I:%M %p") %></p>
       <% if post.user == Current.user%>
         <%= link_to "Edit", edit_organisation_post_path(@organisation, post) %>
         <%= link_to "Delete", organisation_post_path(@organisation, post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
