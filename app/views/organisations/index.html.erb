@@ -1,7 +1,10 @@
 <h1>Organisations</h1>
 
-<% if @organisation %>
-  <p>You are part of the following organisation: <%= @organisation.name %></p>
+<% if @organisations.any? %>
+  <p>You are part of the following organisations: </p>
+  <% @organisations.each do |organisation| %>
+    <p><%= link_to organisation.name, organisation_path(organisation) %></p>
+  <% end %>
 <% else %>
   <p>You are not currently assigned to an organisation.</p>
 <% end %>

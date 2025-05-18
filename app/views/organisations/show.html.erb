@@ -1,10 +1,21 @@
 <h1>Organisation</h1>
 
-<%= @organisation? %>
+<% if @organisation %>
     <p>Name: <%= @organisation.name %></p>
-    <p>Description: <%= @organisation.description %></p>
-    <p>Created at: <%= @organisation.created_at %></p>
-    <p>Updated at: <%= @organisation.updated_at %></p>
+    <% if @organisation.language %>
+        <p>Language: <%= @organisation.language %></p>
+    <% end %>
+    <% if @organisation.country %>
+        <p>Country: <%= @organisation.country %></p>
+    <% end %>
+    
 <% else %>
     <p>You are not part of any organisation.</p>
 <% end %>
+
+<div style="display: flex; gap: 20px;">
+    <%= link_to "Back", organisations_path %>
+    <%= link_to "View All Posts", organisation_posts_path(@organisation) %>
+    <%= link_to "Edit Organisation", edit_organisation_path(@organisation) %>
+    <%= link_to "Delete Organisation", organisation_path(@organisation), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+</div>

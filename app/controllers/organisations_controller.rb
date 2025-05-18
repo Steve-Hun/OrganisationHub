@@ -1,24 +1,16 @@
 class OrganisationsController < ApplicationController
-    before_action :set_organisation, only: %i[ show edit index ]
-    # allow_unauthenticated_access only: %i[ index ]
+    before_action :set_active_organisations, only: %i[ show index ]
 
     def show
-    end
-
-    def edit
+        @organisation = @organisations&.find { |org| org.id == params[:id].to_i }
     end
     
     def index
     end
 
-
     private
-        def set_organisation
-            # Current user may not belong to an organisation\
-            if Current.user&.organisation_id
-                @organisation = Organisation.find(Current.user&.organisation_id)
-            else
-                @organisation = nil
-            end
+        def set_active_organisations
+            # Retrieve all active memberships for the current user, map to array of organisations
+            @organisations = Membership.get_active_memberships(Current.user)&.map(&:organisation)
         end
 end

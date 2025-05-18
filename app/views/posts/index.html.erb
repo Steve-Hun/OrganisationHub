@@ -1,0 +1,21 @@
+<h1>Posts for <%= @organisation.name %> organisation</h1>
+<hr>
+
+<% if @posts.any? %>
+  <% @posts.each do |post| %>
+    <div>
+      <p><strong>Description:</strong> <%= post.description %></p>
+      <p><strong>Author:</strong> <%= post.user.email_address %></p>
+      <p><strong>Last Updated:</strong> <%= post.updated_at %></p>
+      <% if post.user == Current.user%>
+        <%= link_to "Edit", edit_organisation_post_path(@organisation, post) %>
+        <%= link_to "Delete", organisation_post_path(@organisation, post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p>No posts found for this organisation</p>
+<% end %>
+
+<%= link_to "New Post", new_organisation_post_path(@organisation) %>
