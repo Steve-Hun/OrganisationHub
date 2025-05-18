@@ -3,7 +3,7 @@
 <% if @organisations.any? %>
   <p>You are part of the following organisations: </p>
   <% @organisations.each do |organisation| %>
-    <p><%= organisation.name %></p>
+    <p><%= link_to organisation.name, organisation_path(organisation) %></p>
   <% end %>
 <% else %>
   <p>You are not currently assigned to an organisation.</p>
