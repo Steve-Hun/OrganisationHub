@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[ edit update show ]
 
-  resources :organisations, only: %i[ show edit index ]
+  resources :organisations, only: %i[ show edit index ] do 
+    resources :posts
+  end
   
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
