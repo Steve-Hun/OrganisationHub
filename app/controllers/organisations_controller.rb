@@ -14,11 +14,7 @@ class OrganisationsController < ApplicationController
 
     private
         def set_organisation
-            # Current user may not belong to an organisation\
-            if Current.user&.organisation_id
-                @organisation = Organisation.find(Current.user&.organisation_id)
-            else
-                @organisation = nil
-            end
+            # Current user may not belong to any organisation
+            @organisations = Membership.get_active_memberships(Current.user)&.map(&:organisation)
         end
 end
