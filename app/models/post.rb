@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   validates :user, presence: true
   validates :organisation, presence: true
   
-  def author_currently_active?
-    user.active_in_org?(organisation)
+  def author_currently_active(organisation_id)
+    user.active_in_org?(organisation_id)
   end
 end
