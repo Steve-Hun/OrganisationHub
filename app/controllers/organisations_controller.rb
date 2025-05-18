@@ -8,7 +8,6 @@ class OrganisationsController < ApplicationController
     def index
     end
 
-
     private
         def set_active_organisations
             # Retrieve all active memberships for the current user, map to array of organisations

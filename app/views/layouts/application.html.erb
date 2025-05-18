@@ -23,6 +23,10 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+
     <nav>
       <%= link_to "Home", organisations_path %>
       <%= link_to "Profile", user_path(Current.user) if authenticated? %>
