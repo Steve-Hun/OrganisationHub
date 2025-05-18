@@ -7,7 +7,7 @@ class CreateMemberships < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    
+
     # Unique index to ensure a user joins an organisation once
     add_index :memberships, [:user_id, :organisation_id], unique: true
   end
