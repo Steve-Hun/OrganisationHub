@@ -1,6 +1,28 @@
 <h1>Posts for <%= @organisation.name %> organisation</h1>
 <hr>
 
+<%= form_with url: organisation_posts_path(@organisation), method: :get do |form| %>
+
+    <div>
+        <%= form.label :employee_info, "Employee Name or Email Address" %>
+        <%= form.text_field :employee_info, value: params[:employee_info] %>
+    </div>
+
+    <div>
+        <%= form.label :start_date, "Start Date" %>
+        <%= form.date_field :start_date, value: params[:start_date] %>
+    </div>
+
+    <div>
+        <%= form.label :last_updated_date, "Last Updated Date" %>
+        <%= form.date_field :last_updated_date, value: params[:last_updated_date] %>
+    </div>
+
+  <%= form.submit "Filter Posts" %>
+  <%= link_to "Clear Filters", organisation_posts_path(@organisation), class: "button" %>
+<% end %>
+<hr>
+
 <% if @posts.any? %>
   <% @posts.each do |post| %>
     <div>

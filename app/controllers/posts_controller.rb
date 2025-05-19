@@ -45,7 +45,24 @@ class PostsController < ApplicationController
     private 
         def set_organisation_and_active_posts
             posts = Post.includes(:user).where(organisation_id: @organisation.id)
-            @posts = posts.select { |post| post.author_currently_active(@organisation.id) }
+
+            if params[:employee_info].present?
+                posts = posts.joins(:user).where(
+                    "LOWER(users.name) LIKE LOWER(?) OR LOWER(users.email_address) LIKE LOWER(?)",
+                    "%#{params[:employee_info]}%",
+                    "%#{params[:employee_info]}%"
+                )
+            end
+
+            if params[:start_date].present?
+                posts = posts.where("posts.created_at >= ?", params[:start_date])
+            end
+
+            if params[:last_updated_date].present?
+                posts = posts.where("posts.updated_at >= ?", params[:last_updated_date])
+            end
+
+            @posts = posts.select { |post| post.author_currently_active(@organisation.id) } # Return Ruby Array of Posts
         end
 
         def check_ownership
