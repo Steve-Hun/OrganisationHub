@@ -1,14 +1,23 @@
-console.log('Vite ⚡️ Rails')
-
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import App from '../src/App'
 
 document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('react-app')
+    const element = document.getElementById('react-root')
     
-    if (container) {
-      const root = createRoot(container)
-      root.render(<App/>)
+    if (element) {
+      window.csrfToken = element.dataset.csrfToken;
+      
+      const userId = parseInt(element.dataset.userId);
+      
+      const root = ReactDOM.createRoot(element)
+      root.render(
+        <React.StrictMode>
+          <BrowserRouter>
+            <App userId={userId} />
+          </BrowserRouter>
+        </React.StrictMode>
+      )
     }
   })
