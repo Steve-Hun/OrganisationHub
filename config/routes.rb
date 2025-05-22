@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   end
 
   resources :passwords, param: :token
-  resources :organisations, only: %i[ show edit index update ]
+  resources :organisations, only: %i[ show edit index update ] do
+    resource :membership, only: [] do
+      patch :quit
+    end
+  end
   resources :users, only: %i[ edit update show ]
 
   # API routes for React frontend
