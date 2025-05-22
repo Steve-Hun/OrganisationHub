@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # Routes handled by Rails
   resource :session do
     get :signin, to: "sessions#new"
@@ -8,9 +7,9 @@ Rails.application.routes.draw do
   resource :registration do
     get "/", to: "registrations#new"
   end
-  
+
   resources :passwords, param: :token
-  resources :organisations, only: %i[ show edit index ]
+  resources :organisations, only: %i[ show edit index update ]
   resources :users, only: %i[ edit update show ]
 
   # API routes for React frontend
@@ -19,7 +18,7 @@ Rails.application.routes.draw do
       resources :posts
     end
   end
-  
+
   # Routes handles by React
   get "organisations/:organisation_id/posts", to: "react#index"
   get "organisations/:organisation_id/posts/:id", to: "react#index"
@@ -31,5 +30,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Root path ("/")
-  root to: redirect("/session/signin")  
+  root to: redirect("/session/signin")
 end
