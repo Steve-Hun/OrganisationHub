@@ -4,7 +4,7 @@ class OrganisationsController < ApplicationController
     def show
         @organisation = @organisations&.find { |org| org.id == params[:id].to_i }
     end
-    
+
     def index
     end
 
