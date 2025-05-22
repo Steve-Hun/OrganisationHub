@@ -17,7 +17,7 @@
     <%= link_to "Back", organisations_path %>
     <%= link_to "View All Posts", url_for(controller: "react", action: "index", organisation_id: @organisation.id, id: nil) %>
     <%= link_to "Edit Organisation", edit_organisation_path(@organisation) %>
-    <%= link_to "Delete Organisation", organisation_path(@organisation), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <%= button_to "Quit Organisation", quit_organisation_membership_path(@organisation), method: :patch %>
 </div>
 
 
