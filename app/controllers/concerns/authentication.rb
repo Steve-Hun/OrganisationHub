@@ -17,21 +17,24 @@ module Authentication
       resume_session
     end
 
+    # Create a new session if no session is found
     def require_authentication
       resume_session || request_authentication
     end
 
+    # Resume session if one exists, otherwise return nil
     def resume_session
       Current.session ||= find_session_by_cookie
     end
 
+    # Return nil if no session is found
     def find_session_by_cookie
       Session.find_by(id: cookies.signed[:session_id]) if cookies.signed[:session_id]
     end
 
     def request_authentication
       session[:return_to_after_authenticating] = request.url
-      redirect_to new_session_path
+      redirect_to new_session_path # Redirect to sign in page
     end
 
     def after_authentication_url
