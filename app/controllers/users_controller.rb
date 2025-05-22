@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
     before_action :require_correct_user, only: %i[ edit update show ]
-    # before_action :set
-    
+
     def show
         @user = Current.user
     end
@@ -22,7 +21,6 @@ class UsersController < ApplicationController
     private
         def user_params
             fitlered_params = params.require(:user).permit(:name, :email_address, :password)
-            
             fitlered_params.delete(:password) if fitlered_params[:password].blank?
 
             if fitlered_params[:email_address] == Current.user.email_address
@@ -31,7 +29,7 @@ class UsersController < ApplicationController
 
             fitlered_params
         end
-    
+
         def require_correct_user
             @user = User.find(params[:id])
             unless Current.user == @user

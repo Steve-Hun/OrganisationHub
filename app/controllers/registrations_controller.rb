@@ -1,8 +1,6 @@
 class RegistrationsController < ApplicationController
     allow_unauthenticated_access only: %i[ new create ]
-    
     def new
-        # @user = User.new
     end
 
     def create
@@ -31,10 +29,9 @@ class RegistrationsController < ApplicationController
             render :new, alert: "Try another email address or password."
         end
     end
-    
+
     private
         def required_params
             params.permit(:organisation_id, :name, :email_address, :password, :password_confirmation)
         end
 end
-
