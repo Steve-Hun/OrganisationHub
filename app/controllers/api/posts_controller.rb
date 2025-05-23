@@ -14,8 +14,8 @@ class Api::PostsController < ApplicationController
         end
 
         # Get posts created after the start date
-        if params[:start_date].present?
-            posts = posts.where("posts.created_at >= ?", params[:start_date])
+        if params[:created_date].present?
+            posts = posts.where("posts.created_at >= ?", params[:created_date])
         end
 
         # Get posts updated after the last updated date
