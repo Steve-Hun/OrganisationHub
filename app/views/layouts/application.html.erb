@@ -25,15 +25,21 @@
 
   
   <body>
-    <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-    <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+    
     
     <header>
-    <nav>
-      <%= link_to "Home", organisations_path %>
-      <%= link_to "Profile", user_path(Current.user) if authenticated? %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+    <% if authenticated? %>
+    <nav class="w-full bg-white px-4 py-3 flex justify-normal items-center shadow-2xl border-b border-gray-300">
+      <div class="flex justify-normal items-center w-full">
+          <%= link_to "Home", organisations_path, class: "text-gray-700 hover:text-indigo-600" %>
+          <%= link_to "Profile", user_path(Current.user), class: "text-gray-700 hover:text-indigo-600 mx-4" %>
+          <div class="text-gray-700 hover:text-red-600">
+          <%= button_to "Log out", session_path, method: :delete %>
+          </div>
+      </div>
+      
     </nav>
+    <% end %> 
     </header>
 
     <main>
