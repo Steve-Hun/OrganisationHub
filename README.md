@@ -1,24 +1,48 @@
-# README
+# OrganisationHub
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+OrganisationHub is a workplace task management app that allow user to post and join multiple organisations
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+Before you begin, ensure you have the following installed:
+*   Ruby
+*   npm
 
-* System dependencies
+## Installation
 
-* Configuration
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/OrganisationHub.git
+    cd OrganisationHub
+    ```
 
-* Database creation
+2.  **Install Ruby dependencies:**
+    ```bash
+    bundle install
+    ```
 
-* Database initialization
+3.  **Install JavaScript dependencies:**
+    ```bash
+    npm install
+    ```
 
-* How to run the test suite
+4.  **Set up the database:**
+    ```bash
+    rails db:create
+    rails db:migrate
+    rails db:seed # Load initial data for testing
+    ```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Usage
 
-* Deployment instructions
+To run the application locally:
 
-* ...
+1.  **Start the Rails server and Vite development server:**
+
+    Using a tool like `foreman` allow you to run configuration in Profile.dev which run both vite server and rails server
+    ```bash
+    foreman start -f Procfile.dev
+    ```
+
+2.  Open your browser and navigate to the port specified in your configuration
+
