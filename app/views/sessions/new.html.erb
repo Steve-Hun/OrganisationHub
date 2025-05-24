@@ -1,18 +1,29 @@
 
 
-<h1>Sign in to your account</h1>
-<p>Or start your 14-day free trial</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
 
-<%= form_with url: session_path do |form| %>
-  <%= form.label "Email address" %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.label "Password" %>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.checkbox "Remember me" %>
-  <%= form.label "Remember me", style: "display: inline-block;" %>
-  <%= link_to "Sign up", new_registration_path, style: "display: inline-block;" %>
-  <%= link_to "Forgot password?", new_password_path, style: "display: inline-block;" %>
-  <%= form.submit "Sign in", style: "display: block;" %>
-<% end %>
-<br>
+  <h1 class="text-2xl font-bold mb-2">Sign in to your account</h1>
+    <p class="mb-6 text-sm text-gray-500">
+      Or <%= link_to "sign up for an account", new_registration_path, class: "text-indigo-600 hover:underline" %>
+    </p>
+
+  <%= form_with url: session_path do |form| %>
+    <%= form.label "Email address", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %><br>
+    <%= form.label "Password", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.password_field :password, required: true, autocomplete: "current-password", maxlength: 72, class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %><br>
+    <div class="flex items-center justify-between mb-6">
+      <label class="flex items-center text-sm">
+        <%= form.checkbox "Remember me", class: "mr-2" %>
+        <%= form.label "Remember me", class: "flex items-center text-sm" %>
+      </label>
+    <%= link_to "Forgot password?", new_password_path, class: "text-indigo-600 hover:underline text-sm" %>
+    </div>
+    <%= form.submit "Sign in", class: "w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700" %>
+  <% end %>
+
+
+  </div>
+</div>
 

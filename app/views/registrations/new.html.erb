@@ -1,21 +1,38 @@
-<h1>Sign up for an account</h1>
-
-<%= form_with url: registration_path do |form| %>
-    <div style="display: block;">
-        <%= form.label "Organisation Id" %>
-        <%= form.text_field :organisation_id, autofocus: true, autocomplete: "organisation_id", placeholder: "Enter your organisation id", value: params[:organisation_id] %>
-    </div>
-    <div style="display: block;">
-        <%= form.label "Name" %>
-        <%= form.text_field :name, autocomplete: "name", placeholder: "Enter your name", value: params[:name] %>
-    </div>
-    <div style="display: block;">   
-        <%= form.label "Email address" %>
-        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-    </div>
-        <%= form.label "Password" %>
-        <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter your password", maxlength: 72 %><br>
-        <%= form.label "Confirm password" %>
-        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", maxlength: 72 %><br>
-        <%= form.submit "Create account", style: "display: block;" %>
-<% end %>
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <div class="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
+    <h1 class="text-2xl font-bold mb-2">Sign up for an account</h1>
+    <p class="mb-6 text-sm text-gray-500">
+      Or <%= link_to "sign in to your account", new_session_path, class: "text-indigo-600 hover:underline" %>
+    </p>
+    <%= form_with url: registration_path, class: "space-y-4" do |form| %>
+      <div>
+        <%= form.label :organisation_id, "Organisation Id", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :organisation_id, autofocus: true, autocomplete: "organisation_id", value: params[:organisation_id], class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %>
+      </div>
+      <div>
+        <%= form.label :name, "Name", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.text_field :name, autocomplete: "name", value: params[:name], class: "pl-1 mt-1 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %>
+      </div>
+      <div>
+        <%= form.label :email_address, "Email address", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", value: params[:email_address], class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %>
+      </div>
+      <div>
+        <%= form.label :password, "Password", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.password_field :password, required: true, autocomplete: "new-password", maxlength: 72, class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %>
+      </div>
+      <div>
+        <%= form.label :password_confirmation, "Confirm password", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", maxlength: 72, class: "pl-1 mt-2 block w-full rounded-md border-gray-200 border-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none" %>
+      </div>
+      <div class="flex items-center justify-between">
+        <label class="flex items-center text-sm">
+          <%= form.checkbox "Remember me" %>
+          <%= form.label "Remember me", class: "flex items-center text-sm" %>
+        </label>
+        <%= link_to "Forgot your password?", new_password_path, class: "text-indigo-600 hover:underline text-sm" %>
+      </div>
+      <%= form.submit "Create account", class: "w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700" %>
+    <% end %>
+  </div>
+</div>

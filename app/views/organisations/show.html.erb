@@ -1,24 +1,39 @@
-<h1>Organisation</h1>
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-lg">
+    <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">Organisation Details</h1>
 
-<% if @organisation %>
-    <p>Name: <%= @organisation.name %></p>
-    <% if @organisation.language %>
-        <p>Language: <%= @organisation.language %></p>
-    <% end %>
-    <% if @organisation.country %>
-        <p>Country: <%= @organisation.country %></p>
-    <% end %>
-    
-<% else %>
-    <p>You are not part of any organisation.</p>
-<% end %>
+    <% if @organisation %>
+      <div class="space-y-4 mb-8">
+        <div>
+          <h3 class="text-sm font-medium text-gray-500">Name</h3>
+          <p class="mt-1 text-lg text-gray-900"><%= @organisation.name %></p>
+        </div>
 
-<div style="display: flex; gap: 20px;">
-    <%= link_to "Back", organisations_path %>
-    <%= link_to "View All Posts", url_for(controller: "react", action: "index", organisation_id: @organisation.id, id: nil) %>
-    <%= link_to "Edit Organisation", edit_organisation_path(@organisation) %>
-    <%= button_to "Quit Organisation", quit_organisation_membership_path(@organisation), method: :patch %>
+        <% if @organisation.language.present? %>
+          <div>
+            <h3 class="text-sm font-medium text-gray-500">Language</h3>
+            <p class="mt-1 text-lg text-gray-900"><%= @organisation.language %></p>
+          </div>
+        <% end %>
+
+        <% if @organisation.country.present? %>
+          <div>
+            <h3 class="text-sm font-medium text-gray-500">Country</h3>
+            <p class="mt-1 text-lg text-gray-900"><%= @organisation.country %></p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-md text-gray-600 text-center py-4 mb-8">You are not part of any organisation.</p>
+    <% end %>
+
+    <div class="flex flex-wrap justify-center gap-3 border-t border-gray-200 pt-6">
+      <%= link_to "Back to Organisations", organisations_path, class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition duration-150 ease-in-out" %>
+      <% if @organisation %>
+        <%= link_to "View All Posts", url_for(controller: "react", action: "index", organisation_id: @organisation.id, id: nil), class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition duration-150 ease-in-out" %>
+        <%= link_to "Edit Organisation", edit_organisation_path(@organisation), class: "px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm transition duration-150 ease-in-out" %>
+        <%= button_to "Quit Organisation", quit_organisation_membership_path(@organisation), method: :patch, class: "px-4 py-2 text-sm font-medium text-red-700 bg-red-100 hover:bg-red-200 rounded-lg shadow-sm transition duration-150 ease-in-out", form_class: "inline" %>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-
-

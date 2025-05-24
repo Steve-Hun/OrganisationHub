@@ -1,6 +1,0 @@
-<h1>New Post for <%= @organisation.name %></h1>
-<p>Author: <%= Current.user.email_address %></p>
-
-<%= render "form", organisation: @organisation, post: @post %>
-
-<%= link_to "Back to posts", organisation_posts_path(@organisation) %>

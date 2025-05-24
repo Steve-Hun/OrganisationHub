@@ -1,11 +1,11 @@
-<div id="react-root" 
-     data-user-id="<%= Current.user.id %>" 
-     data-csrf-token="<%= form_authenticity_token %>"> <%# Get CSRF token %>
-</div>
-
 <%# Hot reloading for vite and react %>
 <%= vite_client_tag %>
 <%= vite_react_refresh_tag %>
 
 <%# Main application entrypoint with jsx extension %>
 <%= vite_javascript_tag 'application.jsx' %>
+
+<div id="react-root" 
+     data-user-id="<%= Current.user.id %>" 
+     data-csrf-token="<%= form_authenticity_token %>"> <%# Get CSRF token %>
+</div>
