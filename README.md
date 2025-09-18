@@ -1,6 +1,6 @@
 # OrganisationHub
 
-OrganisationHub is a workplace task management app that allow user to post and join multiple organisations
+OrganisationHub is a workplace task management app that allows users to post and join multiple organisations
 
 ## Prerequisites
 
